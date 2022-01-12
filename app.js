@@ -35,13 +35,15 @@ https://lodash.com
 --> heroku create       //create a heroku app for your app to be deployed 
 --> specify the version node.js using in the "package.json" file
 "engines": {
-    "node": "14.x"
+    "node": "14.x.x"
   },
 --> create .gitignore to ignore files that do not need to be uploaded to respository or deployed
+--> git add .  //add project files to staging 
+--> git commit -m "Upload Project toDoList"
 --> git push heroku main     //deploy app , after you made code changes also do this to push the new updated codes 
 --> heroku logs   //to see the app build logs and deploy logs including https connections fails if any
 
- https://enigmatic-plateau-74212.herokuapp.com/ --> this is the deployed web app link
+https://enigmatic-plateau-74212.herokuapp.com/ --> this is the deployed web app link
 
 */
 
@@ -56,7 +58,8 @@ const mongoose = require("mongoose");
 //connect to MongoDB server, and create or look for and link to the 'toDoListDB' 
 //mongoose.connect('mongodb://localhost:27017/toDoListDB');  //uncomment this for local DB use 
 //connect to MongoDB Atlas cloud DB
-mongoose.connect("mongodb+srv://admin-krittidet:Rainbow123@cluster0.jth7j.mongodb.net/toDoListDB");  
+//Note: Password is needed, and user name
+mongoose.connect("mongodb+srv://<userName>:<password>@cluster0.jth7j.mongodb.net/toDoListDB");  
 
 //create schema
 const itemsSchema = new mongoose.Schema({
