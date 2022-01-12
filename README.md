@@ -13,6 +13,8 @@ EXAMPLE: https://enigmatic-plateau-74212.herokuapp.com/work
 
 <br>
 
+To remove items from list simply click on the checkbox 
+
 **Sample Website**
 <br>
 
