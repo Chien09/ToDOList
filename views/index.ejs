@@ -1,0 +1,44 @@
+<!--Will include the "header.ejs", allows header to be reuse in different files-->
+<%- include('header'); -%>
+
+    <!--Dynamic variable using EJS syntax, the variable will be passed from JavaScript app.js-->
+    <div class="box" id="heading">
+        <% if(listTitle === "Saturday" || listTitle === "Sunday"){ %>
+            <h1 style="color: yellow"><%=listTitle%> ToDo List</h1>
+        <%} else { %>
+            <h1 style="color: blue"><%=listTitle%> ToDo List</h1>
+        <% } %>
+    </div>
+    
+    <!--OR (comment if-else code above, must also comment code in app.js)-->
+    <!--
+    <div>
+        <h1><%=listTitle%></h1>
+    </div>
+    -->
+    
+    <div class="box">
+        <!--Render user input added items-->
+        <!--Delete item if user clicked on checkbox, which will POST the element._id-->
+        <% newListItems.forEach(function(element){ %>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" name="checkbox" value="<%=element._id%>" onchange="this.form.submit()">
+                    <p> <%=element.name%> </p>
+                </div>
+                <!--To pass additional data which is "hidden from interface"-->
+                <input type="hidden" name="listName" value="<%=listTitle%>"></input>
+            </form>
+        <% }) %>
+
+        <!--Add item-->
+        <form class="item" action="/" method="post">
+            <input type="text" name="newItem" placeholder="New Item">
+
+            <!--Using dynamic value variable-->
+            <button type="submit" name="typeOfList" value=<%=listTitle%>>+</button>
+        </form>
+    </div>
+
+<!--Will include the "footer.ejs", allows footer to be reuse in different files-->
+<%- include('footer'); -%>
